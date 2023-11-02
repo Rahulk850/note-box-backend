@@ -7,6 +7,8 @@ const fetchUser = require("../middleware/fetchUser");
 const router = express.Router();
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = "extraordinaryrahul";
+
+
 //  create a user using posts api/path/createuser no login is required
 router.post(
   "/createuser",
@@ -38,7 +40,7 @@ router.post(
           });
       }
       const salt = await bcrypt.genSalt(10);
-      const secPass = await bcrypt.hashSync(req.body.password, salt);
+      const secPass =  bcrypt.hashSync(req.body.password, salt);
       console.log(secPass);
       // create a new user
       user = await User.create({
@@ -137,5 +139,6 @@ router.post("/getuser", fetchUser, async (req, res) => {
     res.status(500).send("internal server error");
   }
 });
+
 
 module.exports = router;

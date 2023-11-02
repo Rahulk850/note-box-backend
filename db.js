@@ -8,5 +8,4 @@ const connectToMongo = () => {
 }
 module.exports = connectToMongo;
 
-
 // mongoose returns promises
